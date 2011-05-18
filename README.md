@@ -10,36 +10,43 @@ with [JRuby][2]. Including multi-platform packaging using [Rawr][3].
 The sample code is adapted and expanded from
 [the "Hello SimpleApplication" tutorial on the jme wiki](http://jmonkeyengine.org/wiki/doku.php/jme3:beginner:hello_simpleapplication)
 
-## Important directories:
+## Important files/directories:
 
     jme3-jruby-template
     |
     |__lib
     |  |
-    |  |__java # => Put third-party java libraries here
+    |  |__java # => Third-party java libraries (jars)
+    |  |
+    |  |__ruby # => Third-party ruby libraries (unpacked gems)
     |
     |__package
     |  |
     |  |__classes
     |     |
-    |     |_java # => Where your own java classes get compiled to
+    |     |__java # => *.class files compiled from the *.java files under src/
+    |     |
+    |     |__ruby # => *.class files compiled from the *.rb files under src/
     |
     |__src
        |
-       |__java # => Source code for your own java classes
+       |__java # => Source code for your java classes
        |
-       |__ruby
-          |
-          |__lib # => The bulk of your ruby code should live here
-          |
-          |__main.rb # => The file that actually gets run
-        
+       |__lib # => Source code for your ruby classes
+       |
+       |__main.rb # => The file that gets executed on startup
+
+The meat of your app is under `src`. This is where your own ruby and java
+source code lives. Third-party code lives under `lib` (not to be confused with
+`src/lib`), and everything gets compiled to `package` (customizable in
+`build_configuration.rb`).
+
 ## Running the sample code:
 
 The sample code displays a blue box. You can walk around with the wasd keys
-and look around with the mouse. As an example of mixing ruby and java, it also
-includes code to print messages to the console from a ruby class and a java
-class. See `src/ruby/main.rb` for the juicy details.
+and look around with the mouse. Hit `ESC` to quit. As an example of mixing
+ruby and java, it also includes code to print messages to the console from a
+ruby class and a java class. See `src/ruby/main.rb` for the juicy details.
 
 First, install [JRuby][1] and [Rawr][3]. I'll leave the specifics up to you,
 but I highly recommend [rvm](https://rvm.beginrescueend.com/).
@@ -48,9 +55,24 @@ To run the code directly with jruby:
 
     rake rawr:compile
     jruby src/ruby/main.rb
+    
+You only need the compile step if you have java code under `src`.
+
+To package and run the app as a jar:
+
+    rake rawr:jar
+    java -jar package/jar/jme3-jruby-template.jar
+
+To package and run the app as an OS X .app:
+
+    rake rawr:bundle:app
+    open package/osx/jme3-jruby-template.app
+    
+To package and run the app as a Windows exe:
+
+    rake rawr:bundle:exe
+    package/osx/jme3-jruby-template.exe
 
 ## TODO:
 
-When running the code as a jar or windows/osx executable, it chokes on
-`require "mygame/ruby_player"`. Need to fix that and add packaging to the
-usage instructions.
+* using gems...
