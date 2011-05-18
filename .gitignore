@@ -1,0 +1,10 @@
+.DS_Store
+
+# lwjgl natives (automatically added to root directory when loaded by jme)
+liblwjgl.jnilib
+
+# configs created automatically by rawr
+Info.plist
+
+# build files
+package/*
