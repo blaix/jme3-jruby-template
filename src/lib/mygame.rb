@@ -1,3 +1,0 @@
-module Mygame
-  # Top-level namespace stuffs...
-end

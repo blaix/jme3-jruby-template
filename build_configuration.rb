@@ -22,7 +22,7 @@ configuration do |c|
 	# A list of directories where source files reside
 	# default value: ["src"]
 	#
-	#c.source_dirs = ["src"]
+	c.source_dirs = ["src/ruby", "src/java"]
 
 	# A list of regexps of files to exclude
 	# default value: []

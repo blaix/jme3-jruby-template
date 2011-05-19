@@ -9,29 +9,26 @@ with [JRuby][2]. Including multi-platform packaging using [Rawr][3].
 
 ## Getting started:
 
-Take a look at `src/main.rb`. It is heavily commented to the point of absurdity.
-
-It is adapted and expanded from
-[the "Hello SimpleApplication" tutorial on the jme wiki](http://jmonkeyengine.org/wiki/doku.php/jme3:beginner:hello_simpleapplication).
-
-It displays a blue box. You can walk around with the wasd keys
-and look around with the mouse. Hit `ESC` to quit.
-
-As an example of mixing ruby and java, it also includes code to print messages
-to the console from a ruby class and a java class. See `src/main.rb` for the
-juicy details.
+Take a look at `src/main.rb`. It's a port of
+[the "Hello SimpleApplication" tutorial on the jme wiki](http://jmonkeyengine.org/wiki/doku.php/jme3:beginner:hello_simpleapplication)
+with additional code to illustrate using your own ruby and java classes alongside each other.
 
 ### Running the sample code:
 
-First, install [JRuby][1] and [Rawr][3]. I'll leave the specifics up to you,
-but I highly recommend [rvm](https://rvm.beginrescueend.com/).
+The sample code draws a blue box, lets you walk around with the wasd keys,
+look around with the mouse, and hit `ESC` to exit. It also prints some
+messages to the console to illustrate calling your own custom ruby and java
+classes.
+
+Make sure you have [JRuby][1] and [Rawr][3]. I'll leave the specifics up to you,
+but I highly recommend using [rvm](https://rvm.beginrescueend.com/).
 
 To run the code directly with jruby:
 
     rake rawr:compile
     jruby src/ruby/main.rb
     
-You only need the compile step if you have java code under `src` (which we do).
+You only need the compile step if you have java code under `src/java` (which we do).
 
 To package and run the app as a jar:
 
@@ -43,10 +40,10 @@ To package and run the app as an OS X .app:
     rake rawr:bundle:app
     open package/osx/jme3-jruby-template.app
     
-To package and run the app as a Windows exe:
+To package and run the app as a Windows .exe:
 
     rake rawr:bundle:exe
-    package/osx/jme3-jruby-template.exe
+    package/windows/jme3-jruby-template.exe
 
 ## Important files/directories:
 
@@ -62,22 +59,17 @@ To package and run the app as a Windows exe:
     |  |
     |  |__classes
     |     |
-    |     |__java # => *.class files compiled from the *.java files under src/
+    |     |__java # => *.class files compiled from the *.java files under src/java
     |     |
-    |     |__ruby # => *.class files compiled from the *.rb files under src/
+    |     |__ruby # => *.class files compiled from the *.rb files under src/ruby
     |
     |__src
        |
-       |__java # => Source code for your java classes
+       |__java # => Your own java source code lives here
        |
-       |__lib # => Source code for your ruby classes
-       |
-       |__main.rb # => The file that gets executed on startup
-
-The meat of your app is under `src`. This is where your own ruby and java
-source code lives. Third-party code lives under `lib` (not to be confused with
-`src/lib`), and everything gets compiled to `package` (customizable in
-`build_configuration.rb`).
+       |__ruby # => Your own ruby source code lives here
+          |
+          |__main.rb # => The file that gets executed on startup
 
 ## TODO:
 
