@@ -9,7 +9,7 @@ with [JRuby][2]. Including multi-platform packaging using [Rawr][3].
 
 ## Getting started:
 
-Take a look at `src/main.rb`. It's a port of
+Take a look at `src/ruby/main.rb`. It's a port of
 [the "Hello SimpleApplication" tutorial on the jme wiki](http://jmonkeyengine.org/wiki/doku.php/jme3:beginner:hello_simpleapplication)
 with additional code to illustrate using your own ruby and java classes alongside each other.
 
