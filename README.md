@@ -28,19 +28,19 @@ To run the code directly with jruby:
     rake rawr:compile
     jruby src/ruby/main.rb
     
-You only need the compile step if you have java code under `src/java` (which we do).
+*You only need the compile step if you have java code under `src/java` (which we do).*
 
-To package and run the app as a jar:
+Or to package and run the app as a jar:
 
     rake rawr:jar
     java -jar package/jar/jme3-jruby-template.jar
 
-To package and run the app as an OS X .app:
+Or to package and run the app as an OS X .app:
 
     rake rawr:bundle:app
     open package/osx/jme3-jruby-template.app
     
-To package and run the app as a Windows .exe:
+Or to package and run the app as a Windows .exe:
 
     rake rawr:bundle:exe
     package/windows/jme3-jruby-template.exe
